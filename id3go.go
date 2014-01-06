@@ -18,15 +18,6 @@ type ID3v2Frame struct {
 	FrameID string
 	Size    int
 	
-	TagAlterPreservation  bool
-	FileAlterPreservation bool
-	ReadOnly              bool
-	GroupIdentity         bool
-	Compression           bool
-	Encryption            bool
-	Unsynchronisation     bool
-	DataLengthIndicatior  bool
-	
 	Data    string
 }
 
