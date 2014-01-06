@@ -5,7 +5,8 @@ import (
 )
 
 func parseV22Size(reader *bufio.Reader) int {
-	return int(data[0] << 21 | data[1] << 14 | data[2] << 7 | data[3])
+	size := readBytes(reader, 3))
+	return int(size[0] << 14 | size[1] << 7 | size[2])
 }
 
 func parseV22Tag(reader *bufio.Reader, tag *ID3) {

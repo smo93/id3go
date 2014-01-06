@@ -17,7 +17,16 @@ type ID3v2Header struct {
 type ID3v2Frame struct {
 	FrameID string
 	Size    int
-	Flags   [2]byte
+	
+	TagAlterPreservation  bool
+	FileAlterPreservation bool
+	ReadOnly              bool
+	GroupIdentity         bool
+	Compression           bool
+	Encryption            bool
+	Unsynchronisation     bool
+	DataLengthIndicatior  bool
+	
 	Data    string
 }
 
@@ -38,11 +47,27 @@ type ID3 struct {
 }
 
 func parseV2Header(reader *bufio.Reader, tag *ID3) {
-	
+	data := readB(reader, 10)
+	tag.Header.Version[0] = int(data[3])
+	tag.Header.Version[1] = int(data[4])
+	tag.Header.Unsynchronization = data[5] & (1 << 7) != 0
+	tag.Header.Extended = data[5] & (1 << 6) != 0
+	tag.Header.Experimental = data[5] & (1 << 5) != 0
+	tag.Header.Footer = data[5] & (1 << 4) != 0
+	tag.Header.Size = parseSize(data[6:])
 }
 
 func isTag(reader *bufio.Reader) bool {
+	data, err := reader.Peek(3)
+	if err != nil {
+		return false
+	}
 	
+	if data[0] == 'I' && data[1] == 'D' && data[2] == '3' {
+		return true
+	}
+	
+	return false
 }
 
 func ParseTag(reader io.Reader) *ID3 {
