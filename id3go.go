@@ -22,8 +22,6 @@ type ID3v2Frame struct {
 }
 
 type ID3 struct {
-	fileName string
-	
 	Header ID3v2Header
 	
 	Title    ID3v2Frame
@@ -62,5 +60,17 @@ func isTag(reader *bufio.Reader) bool {
 }
 
 func ParseTag(reader io.Reader) *ID3 {
+	
+}
+
+func (frame *ID3v2Frame) EditFrame(data String) {
+	
+}
+
+func (header *ID3v2Header) EditHeader(unsynch, ext, exp, foo Bool) {
+	
+} 
+
+func WriteToFile(writer io.Writer, tag *ID3) {
 	
 }
