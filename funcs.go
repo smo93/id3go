@@ -60,7 +60,7 @@ func parseString(reader *bufio.Reader, n int) string {
 // a string, describing the file's genre.
 func parseGenre(data []byte) string {
 	if len(data) == 1 {
-		return ConvGenInd(int(data[0]))
+		return convGenInd(int(data[0]))
 	}
 
 	genre := string(data)
@@ -74,7 +74,7 @@ func parseGenre(data []byte) string {
 	index, err := strconv.Atoi(genre)
 	if err == nil {
 		if index >= 0 && index < len(genres) {
-			return ConvGenInd(index)
+			return convGenInd(index)
 		}
 		return "Unknown"
 	}
@@ -83,7 +83,7 @@ func parseGenre(data []byte) string {
 	_, err = fmt.Sscanf(genre, "(%d)", &index)
 	if err == nil {
 		if index >= 0 && index < len(genres) {
-			return ConvGenInd(index)
+			return convGenInd(index)
 		}
 		return "Unknown"
 	}
