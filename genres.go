@@ -137,12 +137,6 @@ var genres = []string {
 
 // ConvGenByte takes a genre byte and returns the corresponding genre
 // as a string.
-func ConvGenInd(index int) string {
+func convGenInd(index int) string {
 	return genres[index]
 } 
-
-// ConvGenStr takes a genre as string and returns
-// the coresponding byte
-func ConvGenStr(genre string) byte {
-	return byte(1)
-}
