@@ -21,6 +21,10 @@ func TestEmpty(t *testing.T) {
 	testFile(t, fileTest{"test_empty.mp3", ""})
 }
 
+func TestV100(t *testing.T) {
+	testFile(t, fileTest{"test_100.mp3", "{\"Version\":[1,0],\"SongTitle\":\"TITLE1234567890123456789012345\",\"Artist\":\"ARTIST123456789012345678901234\",\"Album\":\"\",\"Year\":\"2001\",\"Comment\":\"COMMENT123456789012345678901\\u0000\\u0001\",\"AlbumTrack\":0,\"Genre\":\"Classic Rock\"}"})
+}
+
 func TestV220(t *testing.T) {
 	testFile(t, fileTest{"test_220.mp3", "{\"Header\":{\"Version\":[2,0],\"Unsynchronisation\":false,\"Compression\":false,\"Size\":181},\"Frames\":[{\"ID\":\"TT2\",\"Size\":12,\"TextEncoding\":0,\"Data\":\"There There\"},{\"ID\":\"TP1\",\"Size\":10,\"TextEncoding\":0,\"Data\":\"Radiohead\"},{\"ID\":\"TYE\",\"Size\":5,\"TextEncoding\":0,\"Data\":\"2003\"},{\"ID\":\"TCO\",\"Size\":5,\"TextEncoding\":0,\"Data\":\"Alternative\"}]}"})
 }
