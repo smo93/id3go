@@ -51,11 +51,6 @@ func parseSize(data []byte) int {
 	return int(size)
 }
 
-// TODO
-func parseString(reader *bufio.Reader, n int) string {
-	return "TODODODO"
-}
-
 // parseGenre takes a byte slice as argument and returns
 // a string, describing the file's genre.
 func parseGenre(data []byte) string {
